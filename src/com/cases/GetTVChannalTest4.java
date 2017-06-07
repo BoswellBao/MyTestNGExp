@@ -30,14 +30,14 @@ public class GetTVChannalTest4 {
 		System.out.println("----------test start----------\r\n");
 		ExcelRead.getTestSheetName(excelUrl, sheetName);
 		//通过传需要的参数得出需要的excel数据
-		String[] paraArr = {"remarks", "para_tvid" ,"expectedCode"};
-     	DataPro.excelDataPro(paraArr);
+		String[] paraArr = {"caseName","remarks", "para_tvid" ,"expectedCode","execute"};
+     	DataPro.receiveParas(paraArr);
 	}
      /*
       * 利用@DataProvider获取数据
       */
 	@Test(dataProvider = "excelData",dataProviderClass = DataPro.class) //参数：数据源名称，和被数据源注解的方法名称
-	public void mytest( String remarks, String tvid, String expectedCode) throws Exception {
+	public void mytest(String caseName, String remarks, String tvid, String expectedCode) throws Exception {
 		        System.out.println("testing....");
 				String url = Constant.GET_TV_CHANAAL_URL;				
 				// 封装提交到服务器的参数信息			
@@ -50,11 +50,11 @@ public class GetTVChannalTest4 {
 	            //把实体转化为字符串
 	            String resultString = EntityUtils.toString(entity);	           
 	            //获取返回状态码
-	            int statcode = response.getStatusLine().getStatusCode();
+	            String statcode = response.getStatusLine().toString().substring(9, 12);//string = HTTP/1.1 200 OK, substring = 200
 	            String flag = "fail";
 	            //断言：将返回状态码和预期状态码对比			
 	            try {
-	            	AssertJUnit.assertEquals(statcode, 200);
+	            	AssertJUnit.assertEquals(expectedCode, statcode);
 	            	flag = "pass";
 				} finally {
 					//往excel标记该条用例执行结果，并把返回信息放进returnData
@@ -67,7 +67,7 @@ public class GetTVChannalTest4 {
 	}
 
 	@AfterClass
-	public void afterClass() {
+	public void afterClass() throws Exception {
 		ExcelWrite.writeExcel(excelUrl, sheetName, resultList);
 		System.out.println("\r\n----------test end----------");
 	}
