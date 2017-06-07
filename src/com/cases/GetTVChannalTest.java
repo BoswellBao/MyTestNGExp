@@ -21,6 +21,7 @@ public class GetTVChannalTest {
 	@BeforeClass
 	public void beforeClass() {
 		System.out.println("----------test start----------");
+		
 	}
 
 	@Test
