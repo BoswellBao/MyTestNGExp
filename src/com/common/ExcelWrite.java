@@ -24,6 +24,7 @@ public class ExcelWrite {
 
 		// list元素个数，每个元素是个包含两个string的一维数组
 		int rownum = resultList.size();
+		System.out.println("list元素个数："+ rownum);
 		// 把list转化为rownum×2的数组，这个2是固定的，因为只要往excel中写入executeResult和retrurnData
 		String[][] arr = resultList.toArray(new String[rownum][2]);
 		for (int i = 0; i < rownum; i++) {
@@ -44,7 +45,7 @@ public class ExcelWrite {
 			Row = ExcelWSheet.getRow(0);
 			int totalCols = Row.getPhysicalNumberOfCells();
 			// 算出executeResult、returnData所在的列序号，序号都是从零开始的
-			System.out.println("hanghao liehao:"+totalRows+"     "+totalCols);
+			System.out.println("行数、列数:"+totalRows+"     "+totalCols);
 			int executeResultColNum = totalCols - 2;
 			int returnDataColNum = totalCols - 1;
 			// 写入数据

@@ -35,14 +35,14 @@ public class ExcelRead {
 			ExcelWSheet = ExcelWBook.getSheet(sheetName);
 			// 获取总行数,这里计数是从零开始，例如：excel有6行，但totalRows=5
 			int totalRows = ExcelWSheet.getLastRowNum();
-			// 获取总列数,列数是实际的列数，例如：实际有8列，totalcols=8，导致下面第二层for循环j不能取=
+			// 获取总列数,列数是实际的列数，例如：实际有8列，totalcols=8，但数组序号从零开始，导致下面第二层for循环j不能取=
             Row = ExcelWSheet.getRow(0);
 			int totalCols = Row.getPhysicalNumberOfCells();
 			allData = new String[totalRows + 1][totalCols + 1];
 			for (int i = 0; i <= totalRows; i++) {
 				for (int j = 0; j < totalCols; j++) {
 					allData[i][j] = getCellData(i, j);
-					//System.out.println(allData[i][j]);
+					System.out.println(allData[i][j]);
 				}
 			}
 		} catch (FileNotFoundException e) {

@@ -26,21 +26,20 @@ public class GetTVChannalTest4 {
 	ArrayList<String[]> resultList = new ArrayList<String[]>();
 	
 	@BeforeClass
-	public void beforeClass() {
+	public void beforeClass() throws Exception {
 		System.out.println("----------test start----------\r\n");
 		ExcelRead.getTestSheetName(excelUrl, sheetName);
+		//通过传需要的参数得出需要的excel数据
+		String[] paraArr = {"remarks", "para_tvid" ,"expectedCode"};
+     	DataPro.excelDataPro(paraArr);
 	}
      /*
       * 利用@DataProvider获取数据
       */
 	@Test(dataProvider = "excelData",dataProviderClass = DataPro.class) //参数：数据源名称，和被数据源注解的方法名称
-	public void mytest( ) throws Exception {
+	public void mytest( String remarks, String tvid, String expectedCode) throws Exception {
 		        System.out.println("testing....");
-		        String tvid=null;
-				String url = Constant.GET_TV_CHANAAL_URL;
-				//通过传需要的参数得出需要的excel数据
-//				DataPro.excelDataPro("remarks", "para_tvid" ,"expectedCode" ,"execute");
-				
+				String url = Constant.GET_TV_CHANAAL_URL;				
 				// 封装提交到服务器的参数信息			
 				List<NameValuePair> list = new ArrayList<>();				
 				list.add(new BasicNameValuePair("theTVstationID", tvid));
