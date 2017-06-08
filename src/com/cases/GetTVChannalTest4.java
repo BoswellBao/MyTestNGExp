@@ -38,7 +38,7 @@ public class GetTVChannalTest4 {
       */
 	@Test(dataProvider = "excelData",dataProviderClass = DataPro.class) //参数：数据源名称，和被数据源注解的方法名称
 	public void mytest(String caseName, String remarks, String tvid, String expectedCode) throws Exception {
-		        System.out.println("testing....");
+		        System.out.println("执行用例：" + caseName);
 				String url = Constant.GET_TV_CHANAAL_URL;				
 				// 封装提交到服务器的参数信息			
 				List<NameValuePair> list = new ArrayList<>();				

@@ -30,11 +30,11 @@ public class ExcelWrite {
 		// System.out.println("list元素个数："+ rownum);
 		// 把list转化为rownum×2的数组，这个2是固定的，因为只要往excel中写入executeResult和retrurnData
 		String[][] arr = resultList.toArray(new String[rownum][2]);
-		 for (int i = 0; i < rownum; i++) {
-		 for (int j = 0; j < 2; j++) {
-		 System.out.println(arr[i][j]);
-		 }
-		 }
+		// for (int i = 0; i < rownum; i++) {
+		// for (int j = 0; j < 2; j++) {
+		// System.out.println(arr[i][j]);
+		// }
+		// }
 
 		// poi操作excel，并把数组arr的值放进去
 		try {
@@ -48,12 +48,11 @@ public class ExcelWrite {
 			Row = ExcelWSheet.getRow(0);
 			int totalCols = Row.getPhysicalNumberOfCells();
 			// 算出executeResult、returnData所在的列序号，序号都是从零开始的
-			System.out.println("行数、列数:" + totalRows + "     " + totalCols);
 			int executeResultColNum = totalCols - 2;
 			int returnDataColNum = totalCols - 1;
 			// 写入数据
 			FileOutputStream out = new FileOutputStream(excelUrl);
-			int j = 0;//计数器，当execute为y或者Y时才增1
+			int j = 0;// 计数器，当execute为y或者Y时才增1
 			for (int i = 1; i <= totalRows; i++) {
 				int executeColNum = totalCols - 3;
 				Object obj = ExcelRead.getCellData(i, executeColNum);
@@ -63,7 +62,7 @@ public class ExcelWrite {
 				if (!(obj == null)) {
 					String yY = obj.toString();
 
-					if (yY.equals("y") || yY.equals("Y")) {					
+					if (yY.equals("y") || yY.equals("Y")) {
 						Row = ExcelWSheet.getRow(i);
 						// 判断executeResult列的单元格是否为空，为空就先createCell再setCellValue；不为空就getCell再setCellValue
 						Cell = ExcelWSheet.getRow(i).getCell(executeResultColNum);

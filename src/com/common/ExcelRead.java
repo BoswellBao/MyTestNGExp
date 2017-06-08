@@ -42,7 +42,7 @@ public class ExcelRead {
 			for (int i = 0; i <= totalRows; i++) {
 				for (int j = 0; j < totalCols; j++) {
 					allData[i][j] = getCellData(i, j);
-//					System.out.println(allData[i][j]);
+					// System.out.println(allData[i][j]);
 				}
 			}
 		} catch (FileNotFoundException e) {
